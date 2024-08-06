@@ -22,7 +22,7 @@ const addPosts = (instrument, description, name, year) => {
 
   localStorage.setItem("posts", JSON.stringify(posts));
 
-  return {instrument, description, name, year };
+  return { instrument, description, name, year };
 };
 
 const createidElement = ({ instrument, description, name, year }) => {
@@ -43,7 +43,7 @@ const createidElement = ({ instrument, description, name, year }) => {
 
 
   // Add to the DOM
-  instrumentDiv.append(instrumentName, descriptionid, nameAuthor ,yearPlay);
+  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay);
   container.appendChild(instrumentDiv);
 
   container.style.display = posts.length === 0 ? "none" : "flex";
@@ -75,26 +75,26 @@ inputForm.onsubmit = e => {
   window.location.href = "/html/testimonials.html";
 
 
-  
-const storedPosts = localStorage.getItem("posts");
 
-// Parse the JSON data
-let postsArray = [];
-if (storedPosts) {
+  const storedPosts = localStorage.getItem("posts");
+
+  // Parse the JSON data
+  let postsArray = [];
+  if (storedPosts) {
     try {
-        postsArray = JSON.parse(storedPosts);
+      postsArray = JSON.parse(storedPosts);
     } catch (error) {
-        console.error("Error parsing JSON from localStorage:", error);
+      console.error("Error parsing JSON from localStorage:", error);
     }
-}
+  }
 
-// Use the data in an object 
-const postsObject = {
+  // Use the data in an object 
+  const postsObject = {
     posts: postsArray
-};
+  };
 
-console.log(postsObject);
-const container = document.getElementById("postsshowww");
-container.innerHTML = "";
+  console.log(postsObject);
+  const container = document.getElementById("postsshowww");
+  container.innerHTML = "";
 };
 

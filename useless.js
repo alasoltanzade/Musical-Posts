@@ -420,45 +420,45 @@ console.log("test")
 
 
 // // Data to display
-const books = localStorage.getItem("posts");
+// const books = localStorage.getItem("posts");
 
 
-// Function to display books in the HTML
-const displayBooks = (booksArray) => {
-    const container = document.getElementById("postsshowww");
+// // Function to display books in the HTML
+// const displayBooks = (booksArray) => {
+//     const container = document.getElementById("postsshowww");
     
-    // Clear any existing content
-    container.innerHTML = "";
+//     // Clear any existing content
+//     container.innerHTML = "";
 
-    // Iterate over each book and create an element
-    booksArray.forEach(book => {
-        const bookDiv = document.createElement("div");
-        bookDiv.classList.add("book");
+//     // Iterate over each book and create an element
+//     booksArray.forEach(book => {
+//         const bookDiv = document.createElement("div");
+//         bookDiv.classList.add("book");
 
-        // Create elements for title, author, and year
-        const titleElement = document.createElement("h2");
-        titleElement.innerText = book.title;
+//         // Create elements for title, author, and year
+//         const titleElement = document.createElement("h2");
+//         titleElement.innerText = book.title;
 
-        const authorElement = document.createElement("p");
-        authorElement.innerText = `Author: ${book.author}`;
+//         const authorElement = document.createElement("p");
+//         authorElement.innerText = `Author: ${book.author}`;
 
-        const yearElement = document.createElement("p");
-        yearElement.innerText = `Year: ${book.year}`;
+//         const yearElement = document.createElement("p");
+//         yearElement.innerText = `Year: ${book.year}`;
 
-        // Append the elements to the bookDiv
-        bookDiv.appendChild(titleElement);
-        bookDiv.appendChild(authorElement);
-        bookDiv.appendChild(yearElement);
+//         // Append the elements to the bookDiv
+//         bookDiv.appendChild(titleElement);
+//         bookDiv.appendChild(authorElement);
+//         bookDiv.appendChild(yearElement);
 
-        // Append bookDiv to the container
-        container.appendChild(bookDiv);
-    });
-};
-JSON.parse(showArray)
+//         // Append bookDiv to the container
+//         container.appendChild(bookDiv);
+//     });
+// };
+// JSON.parse(showArray)
 
-displayBooks(books);
+// displayBooks(books);
 
-const posts = JSON.parse(localStorage.getItem("posts")) || [];
+// const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
 
 
@@ -477,3 +477,214 @@ const posts = JSON.parse(localStorage.getItem("posts")) || [];
 //   const year = array[x].year;
   
 // }
+
+
+
+//like
+// var buttemLike = document.createElement("button");
+// buttemLike.innerHTML = 'like';
+
+
+// var table = document.getElementById("tableOnline");
+// var row = table.insertRow(0);
+
+// var cell = row.insertCell(0);
+
+// var buttemResult = buttemLike.cloneNode(true)
+// buttemResult.onclick = function()
+// {
+//     alert("you like your favorit post");
+// }
+
+// cell.appendChild( buttemResult );
+
+
+
+
+
+
+// DOM Elements
+const inputForm11 = document.getElementById("inputForm11");
+const container = document.querySelector(".comment33");
+
+const inputInstrument = inputForm11["comment1"];
+
+
+
+const comment33 = JSON.parse(localStorage.getItem("comment33")) || [];
+
+const addPosts = (comment1) => {
+    comment33.push({
+    comment1,
+  });
+
+  localStorage.setItem("comment33", JSON.stringify(comment33));
+
+  return {comment1};
+};
+
+const createidElement = ({ comment1}) => {
+  // Create elements
+
+  const commentDiv = document.createElement("p");
+
+
+
+  // Fill the content
+
+  commentDiv.innerText = comment1;
+
+
+  // Add to the DOM
+  instrumentDiv.append(instrumentName);
+  container.appendChild(instrumentDiv);
+
+  container.style.display = comment33.length === 0 ? "none" : "flex";
+};
+
+
+//display
+container.style.display = comment33.length === 0 ? "none" : "flex";
+
+comment33.forEach(createidElement);
+
+inputForm11.onsubmit = e => {
+  e.preventDefault();
+
+  const newPosts = addPosts(
+    inputInstrument.value,
+
+  );
+
+  createidElement(newPosts);
+
+  inputInstrument.value = "";
+
+
+
+  
+
+const container = document.getElementById("showComment");
+container.innerHTML = "";
+};
+
+
+
+
+
+
+        
+// <!-- <button class="btn btn-primary" onclick="getLocalStorage('aslfadfkf')">alfsdkasdkfjadslkf</button> -->
+// <!--               <span id="total-likes">🤍</span>
+
+//         <section class="row tm-testimonials-section">
+//             <div class="col-12 tm-carousel">              
+//                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">                    
+//                   <div class="tm-person-img-container"> 
+//                     <img src="/img/a.png" alt="Image" class="img-fluid mx-auto"/>
+//                   </div>  
+//                   <h3 class="tm-about-name tm-uppercase">violin</h3>
+//                   <p class="tm-about-description">
+//                     The violin, colloquially known as a fiddle, is a wooden chordophone, and is the smallest, and thus highest-pitched instrument in regular use in the violin family. Smaller violin-type instruments exist, including the violino piccolo and the pochette, but these are virtually unused.
+//                   </p>
+//                   <button type="checkbox" class="btn btn-primary" value="true">
+//                     Like ❤️ (<span class="totalLikes">10</span>)
+//                   </button><br><br><br><br><br>
+
+
+
+
+
+//                 <form id=" showform">
+//                   <div>Instrument</div> <span id="showInstrument"><br><br>
+//                   <div>Description</div> <span id="showDescription"><br><br>
+//                   <div>author</div> <span id="showAuthor"><br><br>
+
+                  
+                  
+
+//                       <input id="comment" type="text" class="form-control" placeholder="Enter comment... "><br><br>
+//                       <button id="btmInsertCreat" type="button" class="btn btn-primary tm-btn-submit rounded-0">comment on post</button>
+                
+                
+//                       </form><br><br><br><br><br><br>
+
+//                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">
+//                   <div class="tm-person-img-container">
+//                     <img src="/img/c.png" alt="Image" class="img-fluid mx-auto"/>
+//                   </div>              
+//                   <h3 class="tm-about-name tm-uppercase">guitar</h3>
+//                   <p class="tm-about-description">
+//                     The guitar is a stringed musical instrument that is usually fretted (with some exceptions) and typically has six or twelve strings.
+//                   </p>
+//                 </div>
+
+//                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">
+//                   <div class="tm-person-img-container">
+//                     <img src="/img/b.png" alt="Image" class="img-fluid mx-auto"/>
+//                   </div>              
+//                   <h3 class="tm-about-name tm-uppercase">piano</h3>
+//                   <p class="tm-about-description">
+//                     The piano is a keyboard instrument that produces sound when its keys are depressed, through engagement of an action whose hammers strike strings.
+//                   </p>
+//                 </div>
+                
+//                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">
+//                   <div class="tm-person-img-container">
+//                     <img src="/img/d.png" alt="Image" class="img-fluid mx-auto"/>
+//                   </div>              
+//                   <h3 class="tm-about-name tm-uppercase">hangdrum</h3>
+//                   <p class="tm-about-description">
+//                     The Hang is a type of musical instrument called a handpan, fitting into the idiophone class and based on the Caribbean steelpan instrument. It was created by Felix Rohner and Sabina Schärer in Bern, Switzerland. The name of their company is PANArt Hangbau AG.
+//                   </p>
+//                 </div>
+
+//                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">
+//                   <div class="tm-person-img-container">
+//                     <img src="/img/e.png" alt="Image" class="img-fluid mx-auto"/>
+//                   </div>              
+//                   <h3 class="tm-about-name tm-uppercase">harp</h3>
+//                   <p class="tm-about-description">
+//                     The harp is a stringed musical instrument that has individual strings running at an angle to its soundboard; the strings are plucked with the fingers. Harps can be made and played in various ways, standing or sitting, and in orchestras or concerts. Its most common form is triangular in shape and made of wood.                  </p>
+//                 </div> -->
+                
+
+
+
+
+
+
+
+//comment
+document.getElementById("myForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+
+  const name = document.getElementById("name").value;
+  const score = document.getElementById("score").value;
+
+
+  const scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+
+  scores.push(score);
+
+
+  localStorage.setItem("scores", JSON.stringify(scores));
+  localStorage.setItem("name", name);
+});
+
+const name = localStorage.getItem("name");
+
+
+const scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+
+console.log("نام:", name);
+console.log("نمرات:", scores);
+
+
+
+
+
+
