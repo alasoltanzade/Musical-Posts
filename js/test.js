@@ -8,26 +8,26 @@ const showResult = (showArray) => {
 
 
 
-  console.log(showArray);
 
 
   
   JSON.parse(showArray).forEach(post => {
-
+console.log(showArray);
       const showDiv = document.createElement("div");
       showDiv.classList.add("post");
 
 
       const titleElement = document.createElement("h2");
-      titleElement.innerText = post.title;
+      titleElement.innerText = post.instrument;
 
+      const h2 = document.getElementsByClassName()
 
       const instrumentElement = document.createElement("p");
-      instrumentElement.innerText = `instrument: ${post.author}`;
+      instrumentElement.innerText = `instrument: ${post.description}`;
 
 
       const authorElement = document.createElement("p");
-      authorElement.innerText = `Author: ${post.author}`;
+      authorElement.innerText = `Author: ${post.name}`;
 
 
       const yearElement = document.createElement("p");
