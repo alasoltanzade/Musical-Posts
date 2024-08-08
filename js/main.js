@@ -1,6 +1,7 @@
 'use strict';
 
 // DOM Elements
+var counter = 0;
 const inputForm = document.getElementById("inputForm");
 const container = document.querySelector(".posts");
 
@@ -18,16 +19,19 @@ const addPosts = (instrument, description, name, year) => {
     description,
     name,
     year,
+    id: counter,
+    
   });
-
+  counter++;
   localStorage.setItem("posts", JSON.stringify(posts));
-
-  return { instrument, description, name, year };
+  
+  return { instrument, description, name, year, id: counter  }; // return the last assigned id
 };
 
 const createidElement = ({ instrument, description, name, year }) => {
   // Create elements
   const instrumentDiv = document.createElement("div");
+  // instrumentDiv.id = `post-${id}`; // adding id to the div
   const instrumentName = document.createElement("h2");
   const descriptionid = document.createElement("p");
   const nameAuthor = document.createElement("p");
@@ -41,10 +45,13 @@ const createidElement = ({ instrument, description, name, year }) => {
   nameAuthor.innerText = name;
   yearPlay.innerText = + year;
 
-
   // Add to the DOM
   instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay);
   container.appendChild(instrumentDiv);
+
+  const idElement = document.createElement("p");
+  // idElement.innerText = `ID: ${id}`; // Displaying the id
+  instrumentDiv.appendChild(idElement);
 
   container.style.display = posts.length === 0 ? "none" : "flex";
 };
@@ -62,7 +69,7 @@ inputForm.onsubmit = e => {
     inputInstrument.value,
     inputDescription.value,
     inputName.value,
-    inputyear.value
+    inputyear.value,
   );
 
   createidElement(newPosts);

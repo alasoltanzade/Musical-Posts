@@ -687,4 +687,140 @@ console.log("نمرات:", scores);
 
 
 
+// //like
+// const btnElement = document.createElement("button");
+// btnElement.innerHTML = "Like";
+// document.body.appendChild(btnElement);
 
+// const heart_button = document.getElementById("heart-button");
+// const total_likes = document.getElementById("total-likes");
+
+// btnElement.onclick = function () {
+//     heart_button.setAttribute("posts", "heartbeat red-heart")
+//     total_likes.innerHTML = parseInt(total_likes.innerHTML) + 1
+// };
+
+
+
+
+
+
+
+
+
+
+// //comment
+// const commentElement = document.createElement("input");
+// const commentauthorElement = document.createElement("input");
+
+// commentElement.type = "text";
+// commentauthorElement.type = "text";
+// commentElement.placeholder = "Enter your comment";
+// commentauthorElement.placeholder = "Enter your name";
+
+// document.getElementById("myForm").appendChild(commentElement);
+// document.getElementById("myForm").appendChild(commentauthorElement);
+
+
+// document.getElementById("myForm").addEventListener("submit", function (event) {
+//     event.preventDefault();
+
+//     const getComment = commentElement.value;
+//     const getAuthor = commentauthorElement.value;
+//     const shoooooow = document.querySelector(".showCommenttttt");
+
+//     const showCommenttttt = JSON.parse(localStorage.getItem("showCommenttttt")) || [];
+
+//     const addcomments = (getComment, getAuthor) => {
+//         showCommenttttt.push({ getComment, getAuthor });
+//         localStorage.setItem("showCommenttttt", JSON.stringify(showCommenttttt));
+//         return { getComment, getAuthor };
+//     };
+
+//     const createidElement = ({ getComment, getAuthor }) => {
+//         const commentDiv = document.createElement("div");
+//         const commentElementp = document.createElement("p");
+//         const commentauthorElementp = document.createElement("p");
+
+//         commentElementp.textContent = getComment;
+//         commentauthorElementp.textContent = getAuthor;
+
+//         commentDiv.append(commentElementp, commentauthorElementp);
+//         shoooooow.appendChild(commentDiv);
+
+//         shoooooow.style.display = showCommenttttt.length === 0 ? "none" : "flex";
+//     };
+
+//     showCommenttttt.forEach(createidElement);
+
+//     const newCmntt = addcomments(getComment, getAuthor);
+//     createidElement(newCmntt);
+
+//     commentElement.value = "";
+//     commentauthorElement.value = "";
+
+// });
+
+
+
+
+
+
+
+
+
+
+//coment babe
+
+// // به فرم با ID "myForm" یک رویداد "submit" اضافه می‌کنیم
+// document.getElementById("myForm").addEventListener("submit", function (event) {
+//     // جلوگیری از ارسال پیش‌فرض فرم
+//     event.preventDefault();
+  
+//     // دریافت مقادیر از ورودی‌های فرم با IDs "name" و "score"
+//     const name = document.getElementById("getComment").value;
+//     const score = document.getElementById("getAuthor").value;
+  
+ 
+  
+//     // دریافت نمرات موجود از Local Storage، یا یک آرایه خالی اگر نمراتی وجود نداشته باشد
+//     const scores = JSON.parse(localStorage.getItem("scores")) || [];
+  
+//     // اضافه کردن نمره جدید به آرایه نمرات
+//     scores.push(score);
+  
+//     // ذخیره آرایه نمرات به Local Storage
+//     localStorage.setItem("scores", JSON.stringify(scores));
+//     // ذخیره نام به Local Storage
+//     localStorage.setItem("name", name);
+//   });
+  
+//   // دریافت نام از Local Storage
+//   const name = localStorage.getItem("name");
+  
+//   // دریافت نمرات از Local Storage، یا یک آرایه خالی اگر نمراتی وجود نداشته باشد
+//   const scores = JSON.parse(localStorage.getItem("scores")) || [];
+  
+//   console.log( name);
+//   console.log( scores);
+
+
+
+
+
+        // //comment button
+        // const btncmntElement = document.createElement("button");
+        // btncmntElement.innerHTML = "save";
+
+        // const myButton = btncmntElement;
+        // myButton.addEventListener("click", () => {
+        //     // Example data to save in local storage
+        //     const dataToSave = { comment: "This is a comment" };
+        
+        //     // Save to local storage
+        //     localStorage.setItem("userComment", JSON.stringify(dataToSave));
+        
+        //     // Optional: Give feedback
+        //     console.log("Data saved to local storage:", dataToSave);
+        // });
+        
