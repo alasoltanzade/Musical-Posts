@@ -1,124 +1,124 @@
 
 // take user input in javascript without prompt
-              // function runProgram(input){
-              //     let line=input.split('\n')
-              //     let n= Number(line[0]);
-              //     let arr = line[1].split(' ').map(x => +x);
-              //     yourFunc(n,arr);
-              // }
+// function runProgram(input){
+//     let line=input.split('\n')
+//     let n= Number(line[0]);
+//     let arr = line[1].split(' ').map(x => +x);
+//     yourFunc(n,arr);
+// }
 
-              // function yourFunc(n,arr){
-              //     console.log({n,arr})
-              // }
+// function yourFunc(n,arr){
+//     console.log({n,arr})
+// }
 
-              // if(process.env.USER === ""){
-              //     runProgram('')
-              // }
-              // else{
-              //     process.stdin.resume();
-              //     process.stdin.setEncoding('ascii');
-              //     let read="";
-              //     process.stdin.on('data',function(inp){
-              //         read+=inp
-              //     })
-              //     process.stdin.on('end',function(inp){
-              //         read=read.replace(/\n$/,"");
-              //         read=read.replace(/\n$/,"");
-              //         runProgram(read);
-              //     });
-              //     process.on("SIGINT",function(){
-              //         read=read.replace(/\n$/,"");
-              //         runProgram(read);
-              //         process.exit(0);
-              //     })
-              // }
-
-
-
-                  //   click.init({
-                  //   selector: "inputKey",
-                  // });
-
-
-                  //   function btmInsert(){
-                  //       var myContent = click.activeEditor.getContent("inputKey");
-                  //       localStorage.setItem("myContent", myContent);
-                  //       var myContent = localStorage.getItem("myContent");
-                  //       click.activeEditor.setContent(myContent);
-                  //   }
+// if(process.env.USER === ""){
+//     runProgram('')
+// }
+// else{
+//     process.stdin.resume();
+//     process.stdin.setEncoding('ascii');
+//     let read="";
+//     process.stdin.on('data',function(inp){
+//         read+=inp
+//     })
+//     process.stdin.on('end',function(inp){
+//         read=read.replace(/\n$/,"");
+//         read=read.replace(/\n$/,"");
+//         runProgram(read);
+//     });
+//     process.on("SIGINT",function(){
+//         read=read.replace(/\n$/,"");
+//         runProgram(read);
+//         process.exit(0);
+//     })
+// }
 
 
 
-                    // btmInsert.onclick = function(){
-                    //   const key = inputKey.value;
-                    //   const value = inputValue.value;
-                    //   const idPost= id.value;
-                    //   const authorPosts= authorPosts.value;
-                    //   const instrument= instrument.value;
-                    //   const description= description.value;
-                    //   const data= data.value;
-                    //   const likeCount= likeCount.value;
-                    //   const commentCount= commentCount.value;
-                      // comment: [idComment , authorComment, text, time ];
+//   click.init({
+//   selector: "inputKey",
+// });
 
-                    //   if (key && value) {  //both true
-                    //     localStorage.setItem(key, value);
-                    //     location.reload();
-                    //   }
 
-                    // };
+//   function btmInsert(){
+//       var myContent = click.activeEditor.getContent("inputKey");
+//       localStorage.setItem("myContent", myContent);
+//       var myContent = localStorage.getItem("myContent");
+//       click.activeEditor.setContent(myContent);
+//   }
 
 
 
+// btmInsert.onclick = function(){
+//   const key = inputKey.value;
+//   const value = inputValue.value;
+//   const idPost= id.value;
+//   const authorPosts= authorPosts.value;
+//   const instrument= instrument.value;
+//   const description= description.value;
+//   const data= data.value;
+//   const likeCount= likeCount.value;
+//   const commentCount= commentCount.value;
+// comment: [idComment , authorComment, text, time ];
 
-                //     <script>
-                //     const instrument = localStorage.getItem("instrument-name");
-                //     const description =localStorage.getItem("insert-description");
+//   if (key && value) {  //both true
+//     localStorage.setItem(key, value);
+//     location.reload();
+//   }
 
-                //     console.log(JSON.parse(localStorage.getItem('myObject')));
-
-
-                //     // document.getElementById("first-name").textContent =firstName;
-                //     // document.getElementById("last-name").textContent =lastName;
-
-                //   </script>
+// };
 
 
 
 
-    //             <div id="displayArea">
-    //       <h2>به درد کامنت میخوره:</h2>
-    //       <p id="userName"></p>
-    //       <ul id="scoreList"></ul>
-    //   </div>
-          
 //     <script>
-      // document.getElementById("myForm").addEventListener("submit", function(event) {
-      // event.preventDefault(); // جلوگیری از ارسال فرم
+//     const instrument = localStorage.getItem("instrument-name");
+//     const description =localStorage.getItem("insert-description");
 
-      // // خواندن مقادیر فرم
-      // const name = document.getElementById("name").value;
-      // const score = document.getElementById("score").value;
+//     console.log(JSON.parse(localStorage.getItem('myObject')));
 
-      // // دریافت آرایه موجود (یا ایجاد یک آرایه جدید)
-      // const scores = JSON.parse(localStorage.getItem("scores")) || [];
 
-      // // اضافه کردن نمره جدید به آرایه
-      // scores.push(score);
+//     // document.getElementById("first-name").textContent =firstName;
+//     // document.getElementById("last-name").textContent =lastName;
 
-      // // ذخیره‌سازی اطلاعات در localStorage
-      // localStorage.setItem("scores", JSON.stringify(scores));
-      // localStorage.setItem("name", name); // ذخیره نام
-      // });
-      // // خواندن نام
-      // const name = localStorage.getItem("name");
+//   </script>
 
-      // // خواندن آرایه نمرات
-      // const scores = JSON.parse(localStorage.getItem("scores")) || [];
 
-      // // نمایش اطلاعات
-      // console.log("نام:", name);
-      // console.log("نمرات:", scores);
+
+
+//             <div id="displayArea">
+//       <h2>به درد کامنت میخوره:</h2>
+//       <p id="userName"></p>
+//       <ul id="scoreList"></ul>
+//   </div>
+
+//     <script>
+// document.getElementById("myForm").addEventListener("submit", function(event) {
+// event.preventDefault(); // جلوگیری از ارسال فرم
+
+// // خواندن مقادیر فرم
+// const name = document.getElementById("name").value;
+// const score = document.getElementById("score").value;
+
+// // دریافت آرایه موجود (یا ایجاد یک آرایه جدید)
+// const scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+// // اضافه کردن نمره جدید به آرایه
+// scores.push(score);
+
+// // ذخیره‌سازی اطلاعات در localStorage
+// localStorage.setItem("scores", JSON.stringify(scores));
+// localStorage.setItem("name", name); // ذخیره نام
+// });
+// // خواندن نام
+// const name = localStorage.getItem("name");
+
+// // خواندن آرایه نمرات
+// const scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+// // نمایش اطلاعات
+// console.log("نام:", name);
+// console.log("نمرات:", scores);
 //     </script>
 
 
@@ -237,7 +237,7 @@ console.log("test")
 
 // btmInsertCreat.onclick = function(){
 // const newInput = JSON.parse(localStorage.getItem("newInput")) || [];               // دریافت , خواندن , یا ایجاد آرایه موجود 
- 
+
 // newInput.push({                   // اضافه کردن ایتم جدید به آرایه
 //   inputInstrument,
 //   inputDescription,
@@ -426,7 +426,7 @@ console.log("test")
 // // Function to display books in the HTML
 // const displayBooks = (booksArray) => {
 //     const container = document.getElementById("postsshowww");
-    
+
 //     // Clear any existing content
 //     container.innerHTML = "";
 
@@ -475,7 +475,7 @@ console.log("test")
 //   const description = array[x].description;
 //   const name = array[x].name;
 //   const year = array[x].year;
-  
+
 // }
 
 
@@ -514,16 +514,16 @@ const inputInstrument = inputForm11["comment1"];
 const comment33 = JSON.parse(localStorage.getItem("comment33")) || [];
 
 const addPosts = (comment1) => {
-    comment33.push({
+  comment33.push({
     comment1,
   });
 
   localStorage.setItem("comment33", JSON.stringify(comment33));
 
-  return {comment1};
+  return { comment1 };
 };
 
-const createidElement = ({ comment1}) => {
+const createidElement = ({ comment1 }) => {
   // Create elements
 
   const commentDiv = document.createElement("p");
@@ -562,10 +562,10 @@ inputForm11.onsubmit = e => {
 
 
 
-  
 
-const container = document.getElementById("showComment");
-container.innerHTML = "";
+
+  const container = document.getElementById("showComment");
+  container.innerHTML = "";
 };
 
 
@@ -573,7 +573,7 @@ container.innerHTML = "";
 
 
 
-        
+
 // <!-- <button class="btn btn-primary" onclick="getLocalStorage('aslfadfkf')">alfsdkasdkfjadslkf</button> -->
 // <!--               <span id="total-likes">🤍</span>
 
@@ -600,13 +600,13 @@ container.innerHTML = "";
 //                   <div>Description</div> <span id="showDescription"><br><br>
 //                   <div>author</div> <span id="showAuthor"><br><br>
 
-                  
-                  
+
+
 
 //                       <input id="comment" type="text" class="form-control" placeholder="Enter comment... "><br><br>
 //                       <button id="btmInsertCreat" type="button" class="btn btn-primary tm-btn-submit rounded-0">comment on post</button>
-                
-                
+
+
 //                       </form><br><br><br><br><br><br>
 
 //                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">
@@ -628,7 +628,7 @@ container.innerHTML = "";
 //                     The piano is a keyboard instrument that produces sound when its keys are depressed, through engagement of an action whose hammers strike strings.
 //                   </p>
 //                 </div>
-                
+
 //                 <div class="tm-bg-black-transparent tm-testimonial-box text-center">
 //                   <div class="tm-person-img-container">
 //                     <img src="/img/d.png" alt="Image" class="img-fluid mx-auto"/>
@@ -647,7 +647,7 @@ container.innerHTML = "";
 //                   <p class="tm-about-description">
 //                     The harp is a stringed musical instrument that has individual strings running at an angle to its soundboard; the strings are plucked with the fingers. Harps can be made and played in various ways, standing or sitting, and in orchestras or concerts. Its most common form is triangular in shape and made of wood.                  </p>
 //                 </div> -->
-                
+
 
 
 
@@ -776,31 +776,31 @@ console.log("نمرات:", scores);
 // document.getElementById("myForm").addEventListener("submit", function (event) {
 //     // جلوگیری از ارسال پیش‌فرض فرم
 //     event.preventDefault();
-  
+
 //     // دریافت مقادیر از ورودی‌های فرم با IDs "name" و "score"
 //     const name = document.getElementById("getComment").value;
 //     const score = document.getElementById("getAuthor").value;
-  
- 
-  
+
+
+
 //     // دریافت نمرات موجود از Local Storage، یا یک آرایه خالی اگر نمراتی وجود نداشته باشد
 //     const scores = JSON.parse(localStorage.getItem("scores")) || [];
-  
+
 //     // اضافه کردن نمره جدید به آرایه نمرات
 //     scores.push(score);
-  
+
 //     // ذخیره آرایه نمرات به Local Storage
 //     localStorage.setItem("scores", JSON.stringify(scores));
 //     // ذخیره نام به Local Storage
 //     localStorage.setItem("name", name);
 //   });
-  
+
 //   // دریافت نام از Local Storage
 //   const name = localStorage.getItem("name");
-  
+
 //   // دریافت نمرات از Local Storage، یا یک آرایه خالی اگر نمراتی وجود نداشته باشد
 //   const scores = JSON.parse(localStorage.getItem("scores")) || [];
-  
+
 //   console.log( name);
 //   console.log( scores);
 
@@ -808,19 +808,83 @@ console.log("نمرات:", scores);
 
 
 
-        // //comment button
-        // const btncmntElement = document.createElement("button");
-        // btncmntElement.innerHTML = "save";
+// //comment button
+// const btncmntElement = document.createElement("button");
+// btncmntElement.innerHTML = "save";
 
-        // const myButton = btncmntElement;
-        // myButton.addEventListener("click", () => {
-        //     // Example data to save in local storage
-        //     const dataToSave = { comment: "This is a comment" };
-        
-        //     // Save to local storage
-        //     localStorage.setItem("userComment", JSON.stringify(dataToSave));
-        
-        //     // Optional: Give feedback
-        //     console.log("Data saved to local storage:", dataToSave);
-        // });
-        
+// const myButton = btncmntElement;
+// myButton.addEventListener("click", () => {
+//     // Example data to save in local storage
+//     const dataToSave = { comment: "This is a comment" };
+
+//     // Save to local storage
+//     localStorage.setItem("userComment", JSON.stringify(dataToSave));
+
+//     // Optional: Give feedback
+//     console.log("Data saved to local storage:", dataToSave);
+// });
+
+
+// let publish = `<div class="parents">
+//         <h1>${userId.name1}</h1>
+//         <p>${userId.massage}</p>
+//         <span>${userId.date}</span>
+//     </div>`;
+
+
+
+/////////////////like
+// const likeButton = document.getElementById('like-button');
+// const likeCountElement = document.getElementById('like-count');
+
+// // Check if like count data exists in localStorage and set the count accordingly
+// let likeCount = JSON.parse(localStorage.getItem('likeCount')) || 0;
+// likeCountElement.innerText = likeCount;
+
+// // Listen for clicks on the like button and increment the like count
+// likeButton.addEventListener('click', () => {
+//   likeCount++;
+//   likeCountElement.innerText = likeCount;
+
+//   // Store the updated like count in localStorage
+//   localStorage.setItem('likeCount', JSON.stringify(likeCount));
+// });
+
+
+
+
+// function add() {
+//   var task = document.getElementById('task').value;
+//   var todos = get_todos();
+//   var newTask = {
+//               name:task, 
+//               id: "item" + todos.length, 
+//               priority: {
+//                           isPriority:false, 
+//                           color:""
+//                         }
+//            };
+
+//   todos.push(newTask);
+//   localStorage.setItem('todo', JSON.stringify(todos));
+
+//   show();
+
+//   return false;
+// }
+
+// for (var i = 0; i < todos.length; i++) {
+//   var todo = todos[i];
+//   html += "<p id='item" + i + "' isPriority='" + 
+//   todo.priority.isPriority + "'>" + todo["name"] + '<p>' + 
+//   "<button class='remove'>Delete</button>" + " " + 
+//   "<button class='priority' value='item" + i + "'>Priority</button>";
+// };
+
+// todos[i].priority.isPriority = true;
+
+// todos[i].priority.color = "red";
+
+// // [isPriority="true"] {
+//   background-color: red;
+// }

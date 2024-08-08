@@ -3,6 +3,13 @@ html {
 }
 
 body {
+  background-image: url('/img/bg-01.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -85,8 +92,8 @@ small {
   margin-top: 72px;
   color: white;
   padding: 25px;
-  border: 1px solid white;
-  border-top-color: black;
+  /* border: 1px solid white;
+  border-top-color: black; */
   align-items: center;
   justify-content: space-between;
   white-space: nowrap;

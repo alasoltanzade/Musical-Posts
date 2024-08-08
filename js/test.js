@@ -30,54 +30,22 @@ const showResult = (showArray) => {
         yearElement.innerText = `Year: ${post.year}`;
 
 
+
+
         //like
-        const btnElement = document.createElement("button");
-        btnElement.innerHTML = "Like";
+        const btnLikeElement = document.createElement("button");
+        btnLikeElement.innerHTML = "Like";
 
+        let likeStatus = localStorage.getItem('likeStatus');
+        if (likeStatus === 'liked') {
+            btnLikeElement.textContent = "liked";
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-        //comment button
-        const btncmntElement = document.createElement("button");
-        btncmntElement.innerHTML = "save";
-
-        // document.body.appendChild(btncmntElement); // Append the button to the body?
-
-        
-        btncmntElement.addEventListener("click", () => {
-
-            addcomment3();
-
-
-            const dataToSave = {
-                name: userId.name1,
-                comment: userId.massage,
-                date: userId.date
-            };
-
-            localStorage.setItem("userComment", JSON.stringify(dataToSave));
-
-            console.log("Data saved to local storage:", dataToSave);
-        });
-
-
-
-
-
-
-
-
-
-
+        btnLikeElement.onclick = function () {
+            likeStatus = 'liked';
+            btnLikeElement.textContent = likeStatus;
+            localStorage.setItem('likeStatus', likeStatus);
+        };
 
 
 
@@ -85,16 +53,59 @@ const showResult = (showArray) => {
 
 
         //comment
+        // input
         const commentElement = document.createElement("input");
         const commentauthorElement = document.createElement("input");
-
         commentElement.type = "text";
         commentauthorElement.type = "text";
         commentElement.placeholder = "Enter your comment";
         commentauthorElement.placeholder = "Enter your name";
 
+        // button
+        const btncmntElement = document.createElement("button");
+        btncmntElement.innerHTML = "save";
+
+        // add
+        document.body.appendChild(commentElement);
+        document.body.appendChild(commentauthorElement);
+        document.body.appendChild(btncmntElement);
 
 
+        const userId = {
+            name1: null,
+            identity: null,
+            massage: null,
+            date: null
+        };
+
+        commentElement.addEventListener("input", e => {
+            if (!commentElement.value) { // if khali
+                btncmntElement.setAttribute("disabled", "disabled"); //btm disable
+                btncmntElement.classList.remove("abled");
+            } else {
+                btncmntElement.removeAttribute("disabled");
+                btncmntElement.classList.add("abled");
+            }
+        });
+
+        //add commnt
+        function addcomment3() {
+            if (!commentElement.value) return;
+
+            userId.name1 = commentauthorElement.value || "Anonymous"; // empty name
+            userId.identity = userId.name1 !== "Anonymous";
+            userId.massage = commentElement.value;
+            userId.date = new Date().toLocaleString();
+
+
+            commentElement.value = "";
+            commentauthorElement.value = "";
+
+            localStorage.setItem("comments", JSON.stringify(userId)); // save in local Storage
+            console.log("Data saved to local storage:", userId);
+        }
+
+        btncmntElement.addEventListener("click", addcomment3);
 
 
 
@@ -103,7 +114,7 @@ const showResult = (showArray) => {
         showDiv.appendChild(instrumentElement);
         showDiv.appendChild(authorElement);
         showDiv.appendChild(yearElement);
-        showDiv.appendChild(btnElement);
+        showDiv.appendChild(btnLikeElement);
         showDiv.appendChild(commentElement);
         showDiv.appendChild(commentauthorElement);
         showDiv.appendChild(btncmntElement);
@@ -118,68 +129,7 @@ showResult(test);
 
 
 
-
-
-
-
-//comment
-const userId = {
-    name1: null,
-    identity: null,
-    massage: null,
-    date: null
-}
-
-
-const userComment = document.querySelector("usercomment");
-const publishBtn = document.querySelector("publish");
-const comments = document.querySelector("comments");
-const username = document.querySelector("user7");
-
-userComment.addEventListener("input", e => {
-    if (!userComment.value) {
-        publishBtn.setAttribute("disabled", "disabled");
-        publishBtn.classList.remove("abled")
-    } else {
-        publishBtn.removeAttribute("disabled");
-        publishBtn.classList("abled")
-    }
-})
-
-
-function addcomment3() {
-    if (!userComment.value) return;
-    userId.name1 = username.value;
-    if (userId.name1 === "Anonymous") {
-        userId.identity = false;
-    } else {
-        userId.identity = true;
-    }
-
-    userId.massage = userComment.value;
-    userId.date = new Date().toLocaleString();
-    let publish = `<div class =""parents>
-        <h1>${userId.name1}<h1>
-        <p>${userId.massage}</p>
-        <span>${userId.date}</span>
-    <div>`
-
-    comments.innerHTML += publish;
-    userComment.value = "";
-
-    let commentNum = document.querySelectorAll('parent').length;
-    document.getElementById("comment").textContent = commentNum;
-}
-
-
-publishBtn.addEventListener("click", addcomment3)
-
-
-
-
-
-
 //like
-function likebtn() {
-    var setlocal = localStorage.setItem("item", "hi~")
-}
+// function likebtn() {
+//     var setlocal = localStorage.setItem("item", "hi~")
+// }
