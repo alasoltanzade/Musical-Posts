@@ -8,8 +8,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
-
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -23,14 +21,6 @@ a {
 }
 
 
-/* input[type="text"] {
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 300px;
-} */
-
 
 
 button {
@@ -43,6 +33,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin: 20px;
 
 }
 
@@ -54,7 +45,26 @@ button:hover,
   border: none;
 }
 
+.authorrrr44 {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
 
+}
+
+.coment89 {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+
+}
+
+.coment67 {
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+
+}
 
 
 a:hover {
@@ -81,7 +91,7 @@ small {
   width: 100%;
   margin: inherit;
   margin-top: 72px;
-  height: 500px;
+  height: auto;
   ;
   display: flex;
   flex-direction: column;
@@ -97,24 +107,18 @@ small {
 
 
 .posts {
-  /* ::after  */
   height: 500px;
-  ;
   line-break: auto;
   display: flex;
   flex-direction: column;
   margin-top: 72px;
   color: white;
   padding: 25px;
-  /* border: 1px solid white;
-  border-top-color: black; */
   align-items: center;
   justify-content: space-between;
   white-space: nowrap;
   box-sizing: border-box;
   padding: 60px;
-
-
 
 }
 
@@ -282,6 +286,12 @@ yearsss {
   color: #3E3F40;
 }
 
+h2,
+.h2 {
+  font-size: -webkit-xxx-large;
+}
+
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -319,11 +329,14 @@ yearsss {
   margin-bottom: 50px;
 }
 
-
+/* div{
+  margin-top: auto;
+} */
 
 
 p {
   line-height: 1.7;
+  margin-top: inherit;
 }
 
 .tm-call-to-action-form {
@@ -660,7 +673,12 @@ p {
   padding: 25px 20px;
 }
 
-
+input[type="text"] {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  padding: 25px 20px;
+  justify-content: space-between;
+}
 
 
 

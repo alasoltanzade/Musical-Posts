@@ -3,7 +3,6 @@
 // if a counter exists in localStorage, parse it as an integer; otherwise, set it to 0
 let counter = localStorage.getItem("counter") ? parseInt(localStorage.getItem("counter")) : 0;
 
-
 const inputForm = document.getElementById("inputForm");
 const container = document.querySelector(".posts");
 
@@ -23,6 +22,7 @@ const addPosts = (instrument, description, name, year) => {
     description,
     name,
     year,
+    date: new Date().toISOString(), // Add current date
     id: counter, // counter value as a unique ID.
   };
 
@@ -36,9 +36,8 @@ const addPosts = (instrument, description, name, year) => {
   return newPost;
 };
 
-
 // Function to create and display a post element
-const createidElement = ({ instrument, description, name, year, id }) => {
+const createidElement = ({ instrument, description, name, year, id, date }) => {
   // Create a div to hold the post.
   const instrumentDiv = document.createElement("div");
   instrumentDiv.id = `post-${id}`;  // Set a unique id for the div element.
@@ -48,14 +47,17 @@ const createidElement = ({ instrument, description, name, year, id }) => {
   const descriptionid = document.createElement("p");
   const nameAuthor = document.createElement("p");
   const yearPlay = document.createElement("p");
+  const dateElement = document.createElement("p"); // برای نمایش تاریخ اضافه می‌شود
 
   instrumentName.innerText = instrument;
   descriptionid.innerText = description;
   nameAuthor.innerText = name;
   yearPlay.innerText = year;
+  
+  // Set the inner text for the date element
+  dateElement.innerText = `Date: ${new Date(date).toLocaleString()}`; // به فرمت محلی نمایش داده می‌شود.
 
-  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay);
-  container.appendChild(instrumentDiv);
+  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay, dateElement); // اضافه کردن dateElement
 
   // Create and display the id of the post within the post div
   const idElement = document.createElement("p");
@@ -69,9 +71,8 @@ const createidElement = ({ instrument, description, name, year, id }) => {
 // display the container based on the post count
 container.style.display = posts.length === 0 ? "none" : "flex";
 
-// upoloing the post
+// uploading the post
 posts.forEach(createidElement);
-
 
 inputForm.onsubmit = e => {
   e.preventDefault();
@@ -92,9 +93,7 @@ inputForm.onsubmit = e => {
   inputName.value = "";
   inputyear.value = "";
 
-
   window.location.href = "/html/testimonials.html";
-
 
   const storedPosts = localStorage.getItem("posts");
   let postsArray = [];
@@ -106,13 +105,11 @@ inputForm.onsubmit = e => {
     }
   }
 
-
   const postsObject = {
     posts: postsArray
   };
 
   console.log(postsObject);
-
 
   const containerToShowPosts = document.getElementById("postsshowww");
   containerToShowPosts.innerHTML = "";

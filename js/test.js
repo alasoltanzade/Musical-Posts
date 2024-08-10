@@ -1,130 +1,178 @@
 'use strict';
 
 // display data from localStorage on the page.
-const test = localStorage.getItem("posts");
+const test = JSON.parse(localStorage.getItem("posts")) || [];
 
+let currentPage = 1; 
+const itemsPerPage = 3; 
 
+// A variable to hold the sorted or filtered posts
+let displayedPosts = [...test];
 
-const showResult = (showArray) => {
+const showResult = (showArray, page) => {
     const container = document.getElementById("postsshowww");
     container.innerHTML = "";
 
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = page * itemsPerPage;
+    const paginatedItems = showArray.slice(startIndex, endIndex); 
+
     // Create and populate elements for post
-    JSON.parse(showArray).forEach((post) => {
-
+    paginatedItems.forEach((post) => {
         const showDiv = document.createElement("div");
-        showDiv.classList.add("post"); // Add a class for CSS styling
-
+        showDiv.classList.add("post");
 
         const titleElement = document.createElement("h2");
-        titleElement.innerText = post.instrument; // Display the instrument name
-
+        titleElement.innerText = post.instrument; 
 
         const instrumentElement = document.createElement("p");
         instrumentElement.innerText = `Description: ${post.description}`;
 
-
         const authorElement = document.createElement("p");
         authorElement.innerText = `Author: ${post.name}`;
-
 
         const yearElement = document.createElement("p");
         yearElement.innerText = `Year: ${post.year}`;
 
+        // Read the date from localStorage and display it
+        const dateElement = document.createElement("p");
+        dateElement.innerText = `Date: ${new Date(post.date).toLocaleString()}`; // Convert date from ISO format
 
         const btnLikeElement = document.createElement("button");
-        btnLikeElement.innerHTML = "Like"; // Set the default button text
+        btnLikeElement.innerHTML = post.liked ? "Liked" : "Like";
 
-        // the like status for the specific post id from localStorage.
-        let likeStatus = localStorage.getItem(`likeStatus_${post.id}`);
-        // If post was already liked, update button text accordingly.
-        if (likeStatus === 'liked') {
-            btnLikeElement.textContent = "liked"; 
-        }
-
-        // Event handler for the like button click event
         btnLikeElement.onclick = function () {
-            likeStatus = 'liked'; // Mark post as liked
-            btnLikeElement.textContent = likeStatus; // Update button text
-            // Store the like status in localStorage using the post ID as the key
-            localStorage.setItem(`likeStatus_${post.id}`, likeStatus);
+            post.liked = !post.liked;
+            btnLikeElement.textContent = post.liked ? "Liked" : "Like";
+            localStorage.setItem("posts", JSON.stringify(showArray));
         };
 
-
-
+        // Comments section
         const commentContainer = document.createElement("div");
+        commentContainer.className = "coment67";
         const commentElement = document.createElement("input");
         const commentAuthorElement = document.createElement("input");
         commentElement.type = "text";
         commentAuthorElement.type = "text";
-        commentElement.placeholder = "Enter your comment"; 
-        commentAuthorElement.placeholder = "Enter your name"; 
+        commentElement.placeholder = "Enter your comment";
+        commentAuthorElement.placeholder = "Enter your name";
 
         const btnCmntElement = document.createElement("button");
         btnCmntElement.innerHTML = "Save";
 
-        // Enable or disable the comment button based on user input
         commentElement.addEventListener("input", e => {
-            if (!commentElement.value) { // If the input is empty
-                btnCmntElement.setAttribute("disabled", "disabled");
-                btnCmntElement.classList.remove("abled"); // Remove active class.
-            } else {
-                btnCmntElement.removeAttribute("disabled"); // Enable button
-                btnCmntElement.classList.add("abled"); // Add active class
-            }
+            btnCmntElement.disabled = !commentElement.value;
         });
 
-        // Function to save the comment when the button is clicked
+        // Save comment
         btnCmntElement.addEventListener("click", () => {
-            if (!commentElement.value) return; // Don't save if input is empty
-
-            // Create a comment data object with the user's details
+            if (!commentElement.value) return;
             const commentData = {
-                name: commentAuthorElement.value || "Anonymous", 
-                message: commentElement.value, // User comment message
-                date: new Date().toLocaleString(), // date and time
+                postId: post.id,
+                name: commentAuthorElement.value || "Anonymous",
+                message: commentElement.value,
+                date: new Date().toLocaleString(),
             };
 
-            // Retrieve existing comments for the current post ID from localStorage
-            const existingComments = JSON.parse(localStorage.getItem(`comments_${post.id}`)) || [];
-            existingComments.push(commentData); // Add the new comment to existing comments
+            const existingComments = JSON.parse(localStorage.getItem("comments")) || [];
+            existingComments.push(commentData);
+            localStorage.setItem("comments", JSON.stringify(existingComments));
 
-            // Save the updated comments back to localStorage
-            localStorage.setItem(`comments_${post.id}`, JSON.stringify(existingComments));
-
-            // Clear the input fields after saving the comment
             commentElement.value = "";
             commentAuthorElement.value = "";
-            console.log("Data saved to local storage:", commentData); 
+            displayComments(post.id);
         });
 
+        const commentsList = document.createElement("div");
+        const displayComments = (postId) => {
+            commentsList.innerHTML = ""; 
+            const allComments = JSON.parse(localStorage.getItem("comments")) || [];
+            const postComments = allComments.filter(comment => comment.postId === postId);
+            postComments.forEach(comment => {
+                const commentParagraph = document.createElement("p");
+                commentParagraph.innerText = `${comment.name}: ${comment.message} (${comment.date})`;
+                commentsList.appendChild(commentParagraph);
+            });
+        };
+        
+        displayComments(post.id);
 
         commentContainer.appendChild(commentElement);
         commentContainer.appendChild(commentAuthorElement);
         commentContainer.appendChild(btnCmntElement);
-
-
-        const commentsList = document.createElement("div");
-        // Retrieve existing comments for the current post from localStorage
-        const storedComments = JSON.parse(localStorage.getItem(`comments_${post.id}`)) || [];
-        // Display each comment
-        storedComments.forEach(comment => {
-            const commentParagraph = document.createElement("p");
-            commentParagraph.innerText = `${comment.name}: ${comment.message} (${comment.date})`; // Format comment text
-            commentsList.appendChild(commentParagraph); // Append comment to the comments list
-        });
-
-        // Append all elements
         showDiv.appendChild(titleElement);
         showDiv.appendChild(instrumentElement);
         showDiv.appendChild(authorElement);
         showDiv.appendChild(yearElement);
+        showDiv.appendChild(dateElement); // Add the date element to the post div
         showDiv.appendChild(btnLikeElement);
         showDiv.appendChild(commentContainer);
         showDiv.appendChild(commentsList);
-        container.appendChild(showDiv); // add this post div to the container
+        container.appendChild(showDiv);
+    });
+};
+// Function to search posts by title
+const searchPosts = (searchTerm) => {
+    const filteredPosts = test.filter(post => post.instrument.toLowerCase().includes(searchTerm.toLowerCase()));
+    displayedPosts = filteredPosts;
+    currentPage = 1; // Reset to first page after searching
+    showResult(displayedPosts, currentPage);
+    updatePaginationButtons(displayedPosts);
+};
+
+// Event listener for search input
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const searchTerm = e.target.value;
+    searchPosts(searchTerm);
+});
+
+
+// Function to sort posts by date
+const sortPosts = (array, order) => {
+    return array.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return order === 'asc' ? dateA - dateB : dateB - dateA;
     });
 };
 
-// Call the showResult function to display posts from localStorage
-showResult(test);
+// Event listener for sorting
+document.getElementById('sortByDate').addEventListener('change', (e) => {
+    const sortOrder = e.target.value;
+    displayedPosts = sortPosts([...test], sortOrder); // Love copies for sorting
+    currentPage = 1; // Reset to the first page after sorting
+    showResult(displayedPosts, currentPage);
+    updatePaginationButtons(displayedPosts);
+});
+
+// Function to update pagination buttons
+const updatePaginationButtons = (array) => {
+    const prevButton = document.querySelector(".pagination__btn--prev");
+    const nextButton = document.querySelector(".pagination__btn--next");
+    const currentPageDisplay = document.getElementById("currentPageDisplay"); 
+
+    prevButton.disabled = currentPage === 1; 
+    nextButton.disabled = currentPage === Math.ceil(array.length / itemsPerPage);
+
+    currentPageDisplay.innerText = `Page ${currentPage}`;
+
+    prevButton.onclick = function () {
+        if (currentPage > 1) {
+            currentPage--;
+            showResult(array, currentPage);
+            updatePaginationButtons(array);
+        }
+    };
+
+    nextButton.onclick = function () {
+        if (currentPage < Math.ceil(array.length / itemsPerPage)) {
+            currentPage++;
+            showResult(array, currentPage);
+            updatePaginationButtons(array);
+        }
+    };
+};
+
+// Initial call to display the first page of posts
+showResult(displayedPosts, currentPage);
+updatePaginationButtons(displayedPosts);

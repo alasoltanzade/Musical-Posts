@@ -60,6 +60,24 @@
 
 
 
+      <!-- sort -->
+      <div class="sort">
+        <label for="sortByDate">Sort by Date:</label>
+        <select id="sortByDate">
+          <option value="asc">newest</option>
+          <option value="desc">oldest</option>
+        </select>
+      </div>
+
+
+
+      <!-- searchInput -->
+      <input type="text" id="searchInput" placeholder="search..." />
+      <select id="sortByDate">
+        <button class="btn btn-primary tm-btn-submit rounded-0">search </button><br><br><br><br>
+      </select>
+      <div id="postsshowww"></div>
+      
 
 
 
@@ -73,8 +91,7 @@
         </div>
     </div>
     </main>
-
-    <form id="myForm" >
+    <form id="myForm">
       <p type="text" id="getComment"></p>
       <p type="text" id="getAuthor"></p>
     </form>
@@ -83,10 +100,23 @@
 
 
 
+    <!-- pagination -->
+    <div class="pagination">
+      <button class="btn--inline pagination__btn--prev">
+        <span>back</span>
+      </button>
+      <span id="currentPageDisplay">Page 1</span>
+      <button class="btn--inline pagination__btn--next">
+        <span>next</span>
+      </button>
+    </div>
 
 
-  </div>
-  </div>
+    <footer class="row">
+      <p class="col-12 text-white text-center tm-copyright-text">
+      </p>
+    </footer>
+
 </body>
 
 </html>
