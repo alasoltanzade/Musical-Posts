@@ -75,8 +75,6 @@ const showResult = (showArray, page) => {
             btnCmntElement.disabled = !commentElement.value;
         });
 
-
-
         // Save comment
         btnCmntElement.addEventListener("click", () => {
             if (!commentElement.value) return;
@@ -197,3 +195,23 @@ const updatePaginationButtons = (array) => {
 // Initial call to display the first page of posts
 showResult(displayedPosts, currentPage);
 updatePaginationButtons(displayedPosts);
+
+
+
+
+
+//comment reply
+commentReply();{
+    const replyBox = this.commentDisplay.querySelector(".reply-Box");
+    const newCommentBox = document.createElement("comment-Box");
+
+    let newLevel = this.level + 1;
+    newCommentBox.setAttribute("level", newLevel);
+    newCommentBox.level = newLevel;
+
+    if(replyBox.childNodes){
+        replyBox.insertBefore(newCommentBox, replyBox.childNodes[0]);
+    }else{
+        replyBox.appendChild(newCommentBox);
+    }
+}
