@@ -6,7 +6,7 @@ let counter = localStorage.getItem("counter") ? parseInt(localStorage.getItem("c
 const inputForm = document.getElementById("inputForm");
 const container = document.querySelector(".posts");
 
-// input fields
+// input fields 
 const inputInstrument = inputForm["instrument"];
 const inputDescription = inputForm["description"];
 const inputName = inputForm["name"];
@@ -36,6 +36,8 @@ const addPosts = (instrument, description, name, year) => {
   return newPost;
 };
 
+
+
 // Function to create and display a post element
 const createidElement = ({ instrument, description, name, year, id, date }) => {
   // Create a div to hold the post.
@@ -47,17 +49,19 @@ const createidElement = ({ instrument, description, name, year, id, date }) => {
   const descriptionid = document.createElement("p");
   const nameAuthor = document.createElement("p");
   const yearPlay = document.createElement("p");
-  const dateElement = document.createElement("p"); // برای نمایش تاریخ اضافه می‌شود
+  const dateElement = document.createElement("p"); 
 
-  instrumentName.innerText = instrument;
+  instrumentName.innerText = instrument; //مقدار دهی
   descriptionid.innerText = description;
   nameAuthor.innerText = name;
   yearPlay.innerText = year;
   
   // Set the inner text for the date element
-  dateElement.innerText = `Date: ${new Date(date).toLocaleString()}`; // به فرمت محلی نمایش داده می‌شود.
+  dateElement.innerText = `Date: ${new Date(date).toLocaleString()}`; 
 
-  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay, dateElement); // اضافه کردن dateElement
+  //element where make add to div
+  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay, dateElement);
+
 
   // Create and display the id of the post within the post div
   const idElement = document.createElement("p");
@@ -74,8 +78,11 @@ container.style.display = posts.length === 0 ? "none" : "flex";
 // uploading the post
 posts.forEach(createidElement);
 
+
+//when a form send this func stop the reload
 inputForm.onsubmit = e => {
   e.preventDefault();
+
 
   // Call addPosts to create a new post
   const newPosts = addPosts(
@@ -95,6 +102,8 @@ inputForm.onsubmit = e => {
 
   window.location.href = "/html/testimonials.html";
 
+
+  //handel the error
   const storedPosts = localStorage.getItem("posts");
   let postsArray = [];
   if (storedPosts) {

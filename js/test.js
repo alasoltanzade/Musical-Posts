@@ -3,27 +3,32 @@
 // display data from localStorage on the page.
 const test = JSON.parse(localStorage.getItem("posts")) || [];
 
-let currentPage = 1; 
-const itemsPerPage = 3; 
+let currentPage = 1;
+const itemsPerPage = 3;
 
 // A variable to hold the sorted or filtered posts
 let displayedPosts = [...test];
 
+
+
 const showResult = (showArray, page) => {
     const container = document.getElementById("postsshowww");
-    container.innerHTML = "";
+    container.innerHTML = ""; //پاک تکرار عناصر جلوگیری
 
+
+    //related post for each page
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = page * itemsPerPage;
-    const paginatedItems = showArray.slice(startIndex, endIndex); 
+    const paginatedItems = showArray.slice(startIndex, endIndex);  //slice returns selected elements in an array, as a new array
 
-    // Create and populate elements for post
+
+    // Create and populate elements for post - make div
     paginatedItems.forEach((post) => {
         const showDiv = document.createElement("div");
         showDiv.classList.add("post");
 
         const titleElement = document.createElement("h2");
-        titleElement.innerText = post.instrument; 
+        titleElement.innerText = post.instrument;
 
         const instrumentElement = document.createElement("p");
         instrumentElement.innerText = `Description: ${post.description}`;
@@ -38,6 +43,8 @@ const showResult = (showArray, page) => {
         const dateElement = document.createElement("p");
         dateElement.innerText = `Date: ${new Date(post.date).toLocaleString()}`; // Convert date from ISO format
 
+
+        //button like
         const btnLikeElement = document.createElement("button");
         btnLikeElement.innerHTML = post.liked ? "Liked" : "Like";
 
@@ -47,11 +54,15 @@ const showResult = (showArray, page) => {
             localStorage.setItem("posts", JSON.stringify(showArray));
         };
 
+
+
         // Comments section
         const commentContainer = document.createElement("div");
         commentContainer.className = "coment67";
         const commentElement = document.createElement("input");
+        commentElement.className = "com7"
         const commentAuthorElement = document.createElement("input");
+        commentAuthorElement.className = "com8"
         commentElement.type = "text";
         commentAuthorElement.type = "text";
         commentElement.placeholder = "Enter your comment";
@@ -63,6 +74,8 @@ const showResult = (showArray, page) => {
         commentElement.addEventListener("input", e => {
             btnCmntElement.disabled = !commentElement.value;
         });
+
+
 
         // Save comment
         btnCmntElement.addEventListener("click", () => {
@@ -85,7 +98,7 @@ const showResult = (showArray, page) => {
 
         const commentsList = document.createElement("div");
         const displayComments = (postId) => {
-            commentsList.innerHTML = ""; 
+            commentsList.innerHTML = "";
             const allComments = JSON.parse(localStorage.getItem("comments")) || [];
             const postComments = allComments.filter(comment => comment.postId === postId);
             postComments.forEach(comment => {
@@ -94,7 +107,7 @@ const showResult = (showArray, page) => {
                 commentsList.appendChild(commentParagraph);
             });
         };
-        
+
         displayComments(post.id);
 
         commentContainer.appendChild(commentElement);
@@ -111,6 +124,7 @@ const showResult = (showArray, page) => {
         container.appendChild(showDiv);
     });
 };
+
 // Function to search posts by title
 const searchPosts = (searchTerm) => {
     const filteredPosts = test.filter(post => post.instrument.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -120,11 +134,13 @@ const searchPosts = (searchTerm) => {
     updatePaginationButtons(displayedPosts);
 };
 
+
 // Event listener for search input
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const searchTerm = e.target.value;
     searchPosts(searchTerm);
 });
+
 
 
 // Function to sort posts by date
@@ -136,6 +152,8 @@ const sortPosts = (array, order) => {
     });
 };
 
+
+
 // Event listener for sorting
 document.getElementById('sortByDate').addEventListener('change', (e) => {
     const sortOrder = e.target.value;
@@ -145,13 +163,16 @@ document.getElementById('sortByDate').addEventListener('change', (e) => {
     updatePaginationButtons(displayedPosts);
 });
 
+
+
+
 // Function to update pagination buttons
 const updatePaginationButtons = (array) => {
     const prevButton = document.querySelector(".pagination__btn--prev");
     const nextButton = document.querySelector(".pagination__btn--next");
-    const currentPageDisplay = document.getElementById("currentPageDisplay"); 
+    const currentPageDisplay = document.getElementById("currentPageDisplay");
 
-    prevButton.disabled = currentPage === 1; 
+    prevButton.disabled = currentPage === 1;
     nextButton.disabled = currentPage === Math.ceil(array.length / itemsPerPage);
 
     currentPageDisplay.innerText = `Page ${currentPage}`;
