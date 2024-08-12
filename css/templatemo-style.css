@@ -598,7 +598,7 @@ input[type="text"] {
 
 
 
-/* Media Queries */
+/* Media  */
 @media (max-width: 991px) {
   .tm-nav {
     position: relative;
@@ -699,3 +699,4 @@ input[type="text"] {
     padding: 60px;
   }
 }
+

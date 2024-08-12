@@ -30,29 +30,28 @@
         <div class="tm-nav">
           <nav class="navbar navbar-expand-lg navbar-light tm-bg-white-transparent tm-navbar">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-              aria-controls="navbarNav" aria-label="Toggle navigation">
-              <span class="navbar-toggler"></span>
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            <ul class="navbar-nav">
-              <li class="nav-item ">
-                <div class="tm-nav-link"></div>
-                <a class="nav-link" href="/index.html">Home <span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                <div class="tm-nav-link"></div>
-                <a class="nav-link" href="/html/create.html">Create</a>
-              </li>
-              <li class="nav-item">
-                <div class="tm-nav-link"></div>
-                <a class="nav-link" href="/html/about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <div class="tm-nav-link"></div>
-                <a class="nav-link" href="/html/testimonials.html">Show the results</a>
-              </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <a class="nav-link" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                <li class="nav-item active">
+                  <div class="tm-nav-link-highlight"></div>
+                  <a class="nav-link" href="/html/create.html">Create</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/html/about.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/html/testimonials.html">Show the results</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
         </div>
-        </nav>
       </div>
     </div>
 
@@ -159,20 +158,20 @@
       <br><br><br><br>
 
 
-<!-- TODO  main tag  -->
- 
-        <form id="inputForm" class="tm-bg-black-transparent  tm-contact-text">
-          <input type="text" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-            placeholder="instrument name" name="instrument" required /><br><br>
-          <input type="text" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-            placeholder="your description" name="description" required /><br><br>
-          <input type="text" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-            placeholder="author" name="name" required /><br><br>
-          <input type="number" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-            placeholder="how many year you play" name="year" required /><br><br>
-          <button class="btn btn-primary tm-btn-submit rounded-0">Add </button><br><br><br><br>
-        </form>
-        <div class="posts" id="postsshowww"></div>
+      <!-- TODO  main tag  -->
+
+      <form id="inputForm" class="tm-bg-black-transparent  tm-contact-text">
+        <input type="text" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+          placeholder="instrument name" name="instrument" required /><br><br>
+        <input type="text" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+          placeholder="your description" name="description" required /><br><br>
+        <input type="text" class="form-control rounded-0 border-top-0 border-right-0 border-left-0" placeholder="author"
+          name="name" required /><br><br>
+        <input type="number" class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+          placeholder="how many year you play" name="year" required /><br><br>
+        <button class="btn btn-primary tm-btn-submit rounded-0">Add </button><br><br><br><br>
+      </form>
+      <div class="posts" id="postsshowww"></div>
 
 
 
