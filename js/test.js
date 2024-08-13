@@ -39,7 +39,7 @@ const showResult = (showArray, page) => {
         yearElement.innerText = `Year: ${post.year}`;
 
         const dateElement = document.createElement("p");
-        dateElement.innerText = `Date: ${new Date(post.date).toLocaleString()}`;
+        dateElement.innerText = `Date: ${new Date(post.date).toLocaleString().slice(0, 9)}`;
 
         // Button for "Like" functionality
         const btnLikeElement = document.createElement("button");

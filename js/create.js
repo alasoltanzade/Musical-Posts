@@ -12,22 +12,39 @@ const inputDescription = inputForm["description"];
 const inputName = inputForm["name"];
 const inputyear = inputForm["year"];
 
+
+
 // existing posts from localStorage or make an empty array if none exist
-const posts = JSON.parse(localStorage.getItem("posts")) || [];
+//TODO: use inline condition  👍
+// const posts = JSON.parse(localStorage.getItem("posts")) || [];
+const posts = localStorage.getItem("posts") ? JSON.parse(localStorage.getItem("posts")) : [];
+
 
 // Function to add new posts
+// TODO: read about arrow function (this inside arrow function how its work ???) 👍
+//the arrow func have some different from regular functions : this - arguments - Constructor - return
 const addPosts = (instrument, description, name, year) => {
   const newPost = {
     instrument,
     description,
     name,
     year,
-    date: new Date().toISOString(), // Add current date   به فرمت ISO 
-    id: counter, // counter value as a unique ID.
+    // TODO: learn about every function of Date   👍  new Date().getFullYear()
+    //TODO: why function has a new key before it ??? :) 👍  The Date object is a built-in constructor in JavaScript, and when you create a Date object, you use the “new” keyword to call the constructor.
+    // date: new Date().toISOString().slice(0, 9),  or
+    date: (() => {
+      const date = new Date(); // تاریخ فعلی
+      const year = date.getFullYear(); // دریافت سال
+      const month = date.getMonth(); // دریافت ماه (فرمت دو رقمی)
+      return `${year}-${month}`; 
+    })(),
+    id: counter,
   };
+
 
   posts.push(newPost);
   // Update localStorage with the new posts به صورت رشته
+  //TODO: what is the different between string and json  👍         stringify: The value to convert to a JSON string. -- JSON is purely a string with a specified data format it contains only properties, no methods.
   localStorage.setItem("posts", JSON.stringify(posts));
 
   // increase the counter for the next post and save it back to localStorage
@@ -37,11 +54,9 @@ const addPosts = (instrument, description, name, year) => {
 };
 
 
-
-
 // Function to create and display a post element
-const createidElement = ({ instrument, description, name, year, id, date }) => {
-  
+const createIdElement = ({ instrument, description, name, year, id, date }) => {
+
   // Create a div to hold the post.
   const instrumentDiv = document.createElement("div");
   instrumentDiv.id = `post-${id}`;  // Set a unique id for the div element.
@@ -51,52 +66,47 @@ const createidElement = ({ instrument, description, name, year, id, date }) => {
   const descriptionid = document.createElement("p");
   const nameAuthor = document.createElement("p");
   const yearPlay = document.createElement("p");
-  const dateElement = document.createElement("p"); 
+  const dateElement = document.createElement("p");
+  const idElement = document.createElement("p");
 
   instrumentName.innerText = instrument; //مقدار دهی
   descriptionid.innerText = description; //innerText : متن داخل یک عنصر HTML را بخوانیم یا تغییر بدیم
   nameAuthor.innerText = name;
   yearPlay.innerText = year;
-  
+  idElement.innerText = `ID: ${id}`;
+
   // Set the inner text for the date element
-  dateElement.innerText = `Date: ${new Date(date).toLocaleString()}`; 
+  // TODO: `${} what is this ??? ^^ `     -used to insert a variable to a string
+  dateElement.innerText = `Date: ${new Date(date).toLocaleString()}`;
 
   //کل عناصر ایجاد شده به div مربوطه اضافه
-  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay, dateElement);
+  instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay, dateElement, idElement);
 
 
-
-  // Create and display the id of the post within the post div نمایش ایدی
-  const idElement = document.createElement("p");
-  idElement.innerText = `ID: ${id}`;
-  instrumentDiv.appendChild(idElement);  //appendChild: فقط می‌تواند یک نود را به عنوان آرگومان دریافت
-
-
-  // Display the posts only if there are posts; otherwise, hide it
-  container.style.display = posts.length === 0 ? "none" : "flex";
 };
 
-// display the container based on the post count  دوباره وضعیت نمایش بررسی
-container.style.display = posts.length === 0 ? "none" : "flex";
 
 // uploading the post
-posts.forEach(createidElement);
+posts.forEach(createIdElement);
 
 
-//when a form send this func stop the reload  
+//when a form send this func stop the reload
+//TODO: if we have two button how should we handel onsubmit action  
 inputForm.onsubmit = e => {
+  //TODO: what is pre?
   e.preventDefault();
 
 
   // Call addPosts to create a new post
-  const newPosts = addPosts(
+
+  const x = addPosts(
     inputInstrument.value,
     inputDescription.value,
     inputName.value,
     inputyear.value,
   );
 
-  createidElement(newPosts);
+  createIdElement(x);
 
   // Clear input fields after submit
   inputInstrument.value = "";
@@ -111,6 +121,7 @@ inputForm.onsubmit = e => {
   const storedPosts = localStorage.getItem("posts");
   let postsArray = [];
   if (storedPosts) {
+    //TODO: try catch 
     try {
       postsArray = JSON.parse(storedPosts);
     } catch (error) {
@@ -118,12 +129,5 @@ inputForm.onsubmit = e => {
     }
   }
 
-  // const postsObject = {
-  //   posts: postsArray
-  // };
 
-  // console.log(postsObject);
-
-  const containerToShowPosts = document.getElementById("postsshowww");
-  containerToShowPosts.innerHTML = "";
 };
