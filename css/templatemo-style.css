@@ -700,3 +700,33 @@ input[type="text"] {
   }
 }
 
+
+@media (max-width: 991px) {
+  #navbarNav {
+    display: none;
+  }
+
+  .navbar-toggler.collapsed+#navbarNav {
+    display: block;
+  }
+
+  .tm-navbar {
+    background-color: transparent;
+    justify-content: space-between;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 0;
+    font-size: 18px;
+  }
+}
