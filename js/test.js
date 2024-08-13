@@ -9,14 +9,18 @@ const itemsPerPage = 3;
 // A variable to hold the sorted or filtered posts
 let displayedPosts = [...test];
 
+
+
 const showResult = (showArray, page) => {
     const container = document.getElementById("postsshowww");
     container.innerHTML = ""; // Clear container to avoid duplicates
 
-    // Determine the posts to display for the current page
+    // پست هایی را برای نمایش در صفحه فعلی
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = page * itemsPerPage;
     const paginatedItems = showArray.slice(startIndex, endIndex);
+
+
 
     paginatedItems.forEach((post) => {
         const showDiv = document.createElement("div");
@@ -47,6 +51,7 @@ const showResult = (showArray, page) => {
             localStorage.setItem("posts", JSON.stringify(showArray));
         };
 
+
         // Comments section
         const commentContainer = document.createElement("div");
         commentContainer.className = "coment67";
@@ -64,13 +69,13 @@ const showResult = (showArray, page) => {
         const btnCmntElement = document.createElement("button");
         btnCmntElement.innerHTML = "Save";
 
-        commentElement.addEventListener("input", e => {
+        commentElement.addEventListener("input", e => { // اگر فیلد ورودی خالی باشد، دکمه غیرفعال می‌شود
             btnCmntElement.disabled = !commentElement.value;
         });
 
         // Save comment
         btnCmntElement.addEventListener("click", () => {
-            if (!commentElement.value) return;
+            if (!commentElement.value) return;   //فیلد خالی باشد، هیچ کاری انجام نمی‌شد
 
             const existingComments = JSON.parse(localStorage.getItem("comments")) || [];
 
@@ -93,7 +98,7 @@ const showResult = (showArray, page) => {
             displayComments(post.id, commentsList);
         });
 
-        // Create and initialize comments list
+        // Create comments list
         const commentsList = document.createElement("div");
         commentsList.className = "commentsList";
 
@@ -115,6 +120,9 @@ const showResult = (showArray, page) => {
         displayComments(post.id, commentsList);
     });
 };
+
+
+
 
 // Function to display comments
 const displayComments = (postId, commentsList) => {
@@ -138,7 +146,7 @@ const displayComments = (postId, commentsList) => {
 
         // Save reply
         replyButton.addEventListener("click", () => {
-            if (!replyInput.value) return;
+            if (!replyInput.value) return; //khali
 
             const existingComments = JSON.parse(localStorage.getItem("comments")) || [];
             const replyData = {

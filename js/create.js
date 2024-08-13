@@ -6,7 +6,7 @@ let counter = localStorage.getItem("counter") ? parseInt(localStorage.getItem("c
 const inputForm = document.getElementById("inputForm");
 const container = document.querySelector(".posts");
 
-// input fields 
+// input fields  فیلدهای ورودی در داخل فرم
 const inputInstrument = inputForm["instrument"];
 const inputDescription = inputForm["description"];
 const inputName = inputForm["name"];
@@ -22,12 +22,12 @@ const addPosts = (instrument, description, name, year) => {
     description,
     name,
     year,
-    date: new Date().toISOString(), // Add current date
+    date: new Date().toISOString(), // Add current date   به فرمت ISO 
     id: counter, // counter value as a unique ID.
   };
 
   posts.push(newPost);
-  // Update localStorage with the new posts 
+  // Update localStorage with the new posts به صورت رشته
   localStorage.setItem("posts", JSON.stringify(posts));
 
   // increase the counter for the next post and save it back to localStorage
@@ -38,8 +38,10 @@ const addPosts = (instrument, description, name, year) => {
 
 
 
+
 // Function to create and display a post element
 const createidElement = ({ instrument, description, name, year, id, date }) => {
+  
   // Create a div to hold the post.
   const instrumentDiv = document.createElement("div");
   instrumentDiv.id = `post-${id}`;  // Set a unique id for the div element.
@@ -52,34 +54,36 @@ const createidElement = ({ instrument, description, name, year, id, date }) => {
   const dateElement = document.createElement("p"); 
 
   instrumentName.innerText = instrument; //مقدار دهی
-  descriptionid.innerText = description;
+  descriptionid.innerText = description; //innerText : متن داخل یک عنصر HTML را بخوانیم یا تغییر بدیم
   nameAuthor.innerText = name;
   yearPlay.innerText = year;
   
   // Set the inner text for the date element
   dateElement.innerText = `Date: ${new Date(date).toLocaleString()}`; 
 
-  //element where make add to div
+  //کل عناصر ایجاد شده به div مربوطه اضافه
   instrumentDiv.append(instrumentName, descriptionid, nameAuthor, yearPlay, dateElement);
 
 
-  // Create and display the id of the post within the post div
+
+  // Create and display the id of the post within the post div نمایش ایدی
   const idElement = document.createElement("p");
   idElement.innerText = `ID: ${id}`;
-  instrumentDiv.appendChild(idElement);
+  instrumentDiv.appendChild(idElement);  //appendChild: فقط می‌تواند یک نود را به عنوان آرگومان دریافت
+
 
   // Display the posts only if there are posts; otherwise, hide it
   container.style.display = posts.length === 0 ? "none" : "flex";
 };
 
-// display the container based on the post count
+// display the container based on the post count  دوباره وضعیت نمایش بررسی
 container.style.display = posts.length === 0 ? "none" : "flex";
 
 // uploading the post
 posts.forEach(createidElement);
 
 
-//when a form send this func stop the reload
+//when a form send this func stop the reload  
 inputForm.onsubmit = e => {
   e.preventDefault();
 
@@ -103,7 +107,7 @@ inputForm.onsubmit = e => {
   window.location.href = "/html/testimonials.html";
 
 
-  //handel the error
+  //handel the error اگه پستی بود  تجزیع اش کن و اگه با خطا مواحه شد تو کنسول نمایش بده
   const storedPosts = localStorage.getItem("posts");
   let postsArray = [];
   if (storedPosts) {
@@ -114,11 +118,11 @@ inputForm.onsubmit = e => {
     }
   }
 
-  const postsObject = {
-    posts: postsArray
-  };
+  // const postsObject = {
+  //   posts: postsArray
+  // };
 
-  console.log(postsObject);
+  // console.log(postsObject);
 
   const containerToShowPosts = document.getElementById("postsshowww");
   containerToShowPosts.innerHTML = "";
