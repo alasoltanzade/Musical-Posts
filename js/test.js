@@ -6,31 +6,37 @@ const test = JSON.parse(localStorage.getItem("posts")) || [];
 let currentPage = 1;
 const itemsPerPage = 3;
 
-// A variable to hold the sorted or filtered posts
+// تمامی پست‌ها را برای نمایش در صفحه نگه می‌دارد
+// TODO: array destruct
 let displayedPosts = [...test];
 
 
 
-const showResult = (showArray, page) => {
-    const container = document.getElementById("postsshowww");
+const showResult = (showArray, page) => {  // یک تابع - آرایه ای از پست ها و شماره صفحه‌ فعلی    - page = 1
+    // TODO: what is getquearyselector
+    const container = document.getElementById("postsshowww");  // container=div#postsshowww{title , ...}
     container.innerHTML = ""; // Clear container to avoid duplicates
 
-    // پست هایی را برای نمایش در صفحه فعلی
+
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = page * itemsPerPage;
-    const paginatedItems = showArray.slice(startIndex, endIndex);
+    // TODO: slice
+    const paginatedItems = showArray.slice(startIndex, endIndex); //(0,3) (3,6)
 
 
-
-    paginatedItems.forEach((post) => {
+    // TODO: forEach
+    paginatedItems.forEach((post)=> {     //   post = { instrument: '', description: '', name: '', year: '', date: '' }
         const showDiv = document.createElement("div");
         showDiv.classList.add("post");
+        
+
+        // showDiv.className = "post"
 
         const titleElement = document.createElement("h2");
         titleElement.innerText = post.instrument;
 
         const instrumentElement = document.createElement("p");
-        instrumentElement.innerText = `Description: ${post.description}`;
+        instrumentElement.innerText = `Description: ${post.description}`;  //insert a variable to a string
 
         const authorElement = document.createElement("p");
         authorElement.innerText = `Author: ${post.name}`;
@@ -39,14 +45,15 @@ const showResult = (showArray, page) => {
         yearElement.innerText = `Year: ${post.year}`;
 
         const dateElement = document.createElement("p");
-        dateElement.innerText = `Date: ${new Date(post.date).toLocaleString().slice(0, 9)}`;
+        dateElement.innerText = `Date: ${new Date(post.date).toLocaleString()}`;
 
         // Button for "Like" functionality
         const btnLikeElement = document.createElement("button");
-        btnLikeElement.innerHTML = post.liked ? "Liked" : "Like";
+        btnLikeElement.innerHTML = post.liked ? "Liked" : "Like"; //if liked stay liked otherwise; like  -az ghabl
 
         btnLikeElement.onclick = function () {
-            post.liked = !post.liked;
+            post.liked = !post.liked;  //از قبل لایک نشده بود 
+            // TODO: فرق اینا textContent innerHTML
             btnLikeElement.textContent = post.liked ? "Liked" : "Like";
             localStorage.setItem("posts", JSON.stringify(showArray));
         };
@@ -69,17 +76,17 @@ const showResult = (showArray, page) => {
         const btnCmntElement = document.createElement("button");
         btnCmntElement.innerHTML = "Save";
 
-        commentElement.addEventListener("input", e => { // اگر فیلد ورودی خالی باشد، دکمه غیرفعال می‌شود
-            btnCmntElement.disabled = !commentElement.value;
-        });
 
         // Save comment
         btnCmntElement.addEventListener("click", () => {
-            if (!commentElement.value) return;   //فیلد خالی باشد، هیچ کاری انجام نمی‌شد
+            if (!commentElement.value ) return;   //فیلد خالی باشد، هیچ کاری انجام نمی‌شد
 
-            const existingComments = JSON.parse(localStorage.getItem("comments")) || [];
+            const existingComments = JSON.parse(localStorage.getItem("comments")) || []; //کامنت ها رو از لوکال استوریج گت 
 
-            const newId = existingComments.length > 0 ? Math.max(...existingComments.map(comment => comment.id)) + 1 : 0;
+            //با ما math max  بالاترین آیدی رو میگریم
+            //map برای نگهداری اینکه هر کلید ها که همون آیدی ماست به چه ترتیبی درج شدن
+            // TODO: map in array and ... => array 
+            const newId = existingComments.length > 0 ? Math.max(...existingComments.map(comment => comment.id)) + 1 : 0;  //یه آیدی برای هر کامنت داریم - اول شرط میزاریم که اگه کامنتی وجود داشت
 
             const commentData = {
                 id: newId,
@@ -89,13 +96,14 @@ const showResult = (showArray, page) => {
                 date: new Date().toLocaleString(),
                 replies: [] // Ensure replies are initialized here
             };
+// ta inja review shod !
 
             existingComments.push(commentData);
             localStorage.setItem("comments", JSON.stringify(existingComments));
 
             commentElement.value = "";
             commentAuthorElement.value = "";
-            displayComments(post.id, commentsList);
+            displayComments(post.id, commentsList);  //با کلیک نمایش
         });
 
         // Create comments list
@@ -128,6 +136,8 @@ const showResult = (showArray, page) => {
 const displayComments = (postId, commentsList) => {
     commentsList.innerHTML = ""; // Clear previous comments
     const allComments = JSON.parse(localStorage.getItem("comments")) || [];
+
+    //filter: این متد یک تابع رو به ازای هر یک از آیتم های یک آرایه اجرا میکنه بعدش اون آیتم هایی که شرط تابع رو با موفقیت پاس کنند در خروجی نمایش داده میشوند.
     const postComments = allComments.filter(comment => comment.postId === postId);
     postComments.forEach(comment => {
         const commentParagraph = document.createElement("p");
@@ -154,12 +164,12 @@ const displayComments = (postId, commentsList) => {
                 message: replyInput.value,
             };
 
-            const updatedComments = existingComments.map(c => {
-                if (c.id === comment.id) {
-                    c.replies = c.replies || []; // Ensure replies are initialized
-                    c.replies.push(replyData); // Add the reply to the comment's replies
+            const updatedComments = existingComments.map(x => {
+                if (x.id === comment.id) {
+                    x.replies = x.replies || []; // Ensure replies are initialized
+                    x.replies.push(replyData); // Add the reply to the comment's replies
                 }
-                return c;
+                return x;
             });
 
             localStorage.setItem("comments", JSON.stringify(updatedComments));
@@ -185,9 +195,8 @@ const displayComments = (postId, commentsList) => {
 };
 
 // Function to search posts by title
-const searchPosts = (searchTerm) => {
-    const filteredPosts = test.filter(post => post.instrument.toLowerCase().includes(searchTerm.toLowerCase()));
-    displayedPosts = filteredPosts;
+const searchPosts = (searchTerm) => {  //searchTerm کلمه ای که سرچ میشه
+    displayedPosts = test.filter(post => post.instrument.toLowerCase().includes(searchTerm.toLowerCase())); //toLowerCase به حروفش حساس نباشه - هر دوتاش به حروف کوچک تبدیل میکنیم
     currentPage = 1;
     showResult(displayedPosts, currentPage);
     updatePaginationButtons(displayedPosts);
@@ -195,16 +204,16 @@ const searchPosts = (searchTerm) => {
 
 // Event listener for search input
 document.getElementById('searchInput').addEventListener('input', (e) => {
-    const searchTerm = e.target.value;
-    searchPosts(searchTerm);
+    const searchTerm = e.target.value;  //مقدار فعلی فیلد ورودی را می‌گیرد
+    searchPosts(searchTerm);  //send to ..
 });
 
 // Function to sort posts by date
-const sortPosts = (array, order) => {
+const sortPosts = (array, order) => {  //array آرایه‌ای است که باید مرتب شود    - order نوع مرتب‌سازی
     return array.sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
-        return order === 'asc' ? dateA - dateB : dateB - dateA;
+        return order === 'new3' ? dateA - dateB : dateB - dateA;
     });
 };
 
@@ -223,10 +232,11 @@ const updatePaginationButtons = (array) => {
     const nextButton = document.querySelector(".pagination__btn--next");
     const currentPageDisplay = document.getElementById("currentPageDisplay");
 
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === Math.ceil(array.length / itemsPerPage);
+    prevButton.disabled = currentPage === 1;  //وقتی تو صفحه اولی دکمه قبل غیر فعال
+    nextButton.disabled = currentPage === Math.ceil(array.length / itemsPerPage);  //ceil : وقتی عدد رو به کران بالایی بعدی گرد  کنیم
+    // تعداد کل آیتم‌ها را بر تعداد آیتم‌های هر صفحه تقسیم می‌کند و به نزدیک‌ترین عدد صحیح بالایی گرد 
 
-    currentPageDisplay.innerText = `Page ${currentPage}`;
+    currentPageDisplay.innerText = `Page ${currentPage}`;  //شماره صفحه فعلی را به عنوان متن عنصر نمایش
 
     prevButton.onclick = function () {
         if (currentPage > 1) {
